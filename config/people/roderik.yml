@@ -36,10 +36,10 @@ recipes:
         - osxdefaults::menu_show_clock_with_date
 attributes:
     git:
-        name: Roderik van der Veer
-        email: roderik@vanderveer.be
+        name: Luca Maraschi
+        email: luca.maraschi@gmail.com
     osxdefaults:
-        computername: Sinope
+        computername: Synapse
     dotfiles:
         kdeploy:
             hostname: dev

@@ -21,7 +21,6 @@ recipes:
         - applications::imagealpha
         - applications::svgo
         - applications::sublime_text_3
-        - applications::phpstorm
         - applications::codekit
         - applications::espresso
         - applications::watch
