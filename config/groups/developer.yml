@@ -11,7 +11,7 @@ recipes:
         - applications::bower
         - applications::git-flow
         - applications::sass
-        - applications::siege
+#        - applications::siege
         - applications::nodejs
         - applications::ssh_config
         - dotfiles::vim
