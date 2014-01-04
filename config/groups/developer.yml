@@ -15,7 +15,6 @@ recipes:
         - applications::nodejs
         - applications::ssh_config
         - dotfiles::vim
-        - applications::composer
     mac_os_x:
         - applications::imageoptim
         - applications::imagealpha
