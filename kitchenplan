@@ -110,9 +110,9 @@ require "bundler/setup"
 require 'json'
 
 # Trying to get some metrics for usage, just comment out if you don't want it.
-ohai 'Sending a ping to Google Analytics to count usage'
-require 'Gabba'
-Gabba::Gabba.new("UA-46288146-1", "github.com").event("Kitchenplan", "Run", ENV['USER'])
+#ohai 'Sending a ping to Google Analytics to count usage'
+#require 'Gabba'
+#Gabba::Gabba.new("UA-46288146-1", "github.com").event("Kitchenplan", "Run", ENV['USER'])
 #Gabba::Gabba.new("UA-46288146-1", "github.com").event("Kitchenplan", "Run", "User", ENV['USER'])
 
 
