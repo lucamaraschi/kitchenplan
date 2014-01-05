@@ -51,6 +51,7 @@ module Kitchenplan
         config = {}
         config['recipes'] = []
         config['recipes'] |= @default_config['recipes']['global'] || []
+        puts 'PLATFORM: ' + @platform
         config['recipes'] |= @default_config['recipes'][@platform] || []
         @group_configs.each do |group_name, group_config|
             config['recipes'] |= group_config['recipes']['global'] || []
