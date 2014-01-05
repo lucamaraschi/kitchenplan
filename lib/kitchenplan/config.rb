@@ -20,7 +20,7 @@ module Kitchenplan
 
     def detect_platform
         ohai = Ohai::System.new
-        ohai.platform
+        ohai.all_plugins
         @platform = ohai[:platform_family]
     end
 
@@ -51,7 +51,6 @@ module Kitchenplan
         config = {}
         config['recipes'] = []
         config['recipes'] |= @default_config['recipes']['global'] || []
-        puts 'PLATFORM: ' + @platform
         config['recipes'] |= @default_config['recipes'][@platform] || []
         @group_configs.each do |group_name, group_config|
             config['recipes'] |= group_config['recipes']['global'] || []
