@@ -14,9 +14,9 @@ recipes:
         - applications::things
         - applications::tower
         - applications::vlc
-        - applications::superduper
+#        - applications::superduper
         - applications::alfred
-        - applications::totalfinder
+#        - applications::totalfinder
         - applications::cord
 #        - applications::transmit
         - applications::spotify
