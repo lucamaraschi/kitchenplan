@@ -4,7 +4,7 @@ groups:
 recipes:
     global:
     mac_os_x:
-        - applications::p7zip
+        - applications::7zip
         - applications::cyberduck
         - applications::google-hangouts
         - applications::iterm2
