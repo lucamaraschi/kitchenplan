@@ -17,7 +17,7 @@ recipes:
         - osxdefaults::disable_resume_system-wide
         - osxdefaults::save_screenshots_in_png_format
         - osxdefaults::save_screenshots_to_the_desktop
-        - applications::bash
+        - applications::zsh
 attributes:
     osxdefaults:
         loginmessage: Property of Luca Maraschi - luca.maraschi@gmail.com
