@@ -9,7 +9,6 @@ recipes:
         - applications::google-hangouts
         - applications::iterm2
         - applications::rdio
-        - applications::vagrant
         - applications::virtualbox
         - applications::wireshark
         - applications::1password
