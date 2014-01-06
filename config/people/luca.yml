@@ -36,6 +36,7 @@ recipes:
         - osxdefaults::dock_remove_the_auto-hiding_dock_delay
         - osxdefaults::menu_add_battery_percentage
         - osxdefaults::menu_show_clock_with_date
+				- dotfiles::zsh
 attributes:
     git:
         name: Luca Maraschi
