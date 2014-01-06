@@ -4,14 +4,14 @@ groups:
 recipes:
     global:
     mac_os_x:
-				- applications::p7zip
-				- applications::cyberduck
-				- applications::google-hangouts
-				- applications::iterm2
-				- applications::rdio
-				- applications::vagrant
-				- applications::virtualbox
-				- applications::wireshark
+        - applications::p7zip
+        - applications::cyberduck
+        - applications::google-hangouts
+        - applications::iterm2
+        - applications::rdio
+        - applications::vagrant
+        - applications::virtualbox
+        - applications::wireshark
         - applications::1password
         - applications::dropbox
         - applications::evernote
@@ -22,7 +22,7 @@ recipes:
         - applications::alfred
         - applications::cord
         - applications::bartender
-				- applications::mou
+        - applications::mou
         - osxdefaults::dock_automatically_hide_and_show_the_dock
         - osxdefaults::dock_do_not_animate_opening_applications_from_the_dock
         - osxdefaults::dock_enable_spring_loading_for_all_dock_items
@@ -36,7 +36,7 @@ recipes:
         - osxdefaults::dock_remove_the_auto-hiding_dock_delay
         - osxdefaults::menu_add_battery_percentage
         - osxdefaults::menu_show_clock_with_date
-				- dotfiles::zsh
+        - dotfiles::zsh
 attributes:
     git:
         name: Luca Maraschi
