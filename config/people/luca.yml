@@ -48,12 +48,12 @@ attributes:
             - luca
         vim:
             bundle:
-                - sleuth: git://github.com/tpope/vim-sleuth.git
-                - sensible: git://github.com/tpope/vim-sensible.git
-                - gitgutter: git://github.com/airblade/vim-gitgutter.git
-                - airline: https://github.com/bling/vim-airline
-                - syntastic: git://github.com/scrooloose/syntastic.git
-                - nerdtree: https://github.com/scrooloose/nerdtree.git
+                - commandt: https://github.com/wincent/Command-T.git
+                - fugitive: https://github.com/tpope/vim-fugitive.git
+                - minibuffer: https://github.com/fholgado/minibufexpl.vim.git
+                - tagbar: https://github.com/majutsushi/tagbar.git
+                - simplepairs: https://github.com/vim-scripts/simple-pairs.git
+                - youcompleteme: https://github.com/Valloric/YouCompleteMe.git
     git:
         name: Luca Maraschi
         email: luca.maraschi@gmail.com
