@@ -58,7 +58,6 @@ end
 
 ########################################
 
-abort "OSX too old, you need at least Mountain Lion" if macos_version < "10.8"
 abort "Don't run this as root!" if Process.uid == 0
 abort <<-EOABORT unless `groups`.split.include? "admin"
 This script requires the user #{ENV['USER']} to be an Administrator.
@@ -83,6 +82,10 @@ OptionParser.new do |opts|
     opts.on("--[no-]chef", "Run chef (defaults to yes)") do |chef|
         options[:chef] = chef
     end
+    options[:recipes] = false
+    opts.on("--recipes x,y,z", Array, "Run Kitchenplan with all attributes, but only the recipes passed along on the command line. Useful for testing or fast runs.") do |list|
+        options[:recipes] = list
+    end
     opts.separator ""
     opts.separator "Common options:"
     opts.on_tail("-h", "--help", "Show this message") do
@@ -96,29 +99,23 @@ OptionParser.new do |opts|
 end.parse!
 
 # Bootstrapping dependencies
-if File.exist? '/etc/redhat-release'
-    normaldo "(gem spec -q bundler > /dev/null 2>&1) || sudo yum install -y rubygem-bundler"
-    normaldo "(rpm -qi ruby-devel > /dev/null 2>&1) || sudo yum install -y ruby-devel"
-else
-    normaldo "(gem spec bundler -v > /dev/null 2>&1) || sudo gem install bundler --no-rdoc --no-ri"
-end
-sudo "bundle install --binstubs=bin #{(options[:debug] ? '--verbose' : '--quiet')}"
+sudo "sudo gem install bundler --no-rdoc --no-ri" unless Kernel.system "gem query --name-matches '^bundler$' --installed > /dev/null 2>&1"
+normaldo "rm -rf .bundle/config"
+normaldo "bundle install --binstubs bin --path .bundle --deployment --local --no-cache #{(options[:debug] ? '--verbose' : '--quiet')}"
 
 # Add local deps to the load path.
 require "rubygems"
 require "bundler/setup"
-require 'json'
 
 # Trying to get some metrics for usage, just comment out if you don't want it.
-#ohai 'Sending a ping to Google Analytics to count usage'
-#require 'Gabba'
-#Gabba::Gabba.new("UA-46288146-1", "github.com").event("Kitchenplan", "Run", ENV['USER'])
-#Gabba::Gabba.new("UA-46288146-1", "github.com").event("Kitchenplan", "Run", "User", ENV['USER'])
-
+ohai 'Sending a ping to Google Analytics to count usage'
+require 'Gabba'
+Gabba::Gabba.new("UA-46288146-1", "github.com").event("Kitchenplan", "Run", ENV['USER']
 
 # Generate the chef config
 ohai 'Generating the Chef configs'
 $: << File.join((File.expand_path("../", Pathname.new(__FILE__).realpath)), "/lib")
+require 'json'
 require "kitchenplan/config"
 config = Kitchenplan::Config.new
 File.open("kitchenplan-attributes.json", 'w') do |out|
@@ -129,11 +126,14 @@ File.open("solo.rb", 'w') do |out|
 end
 
 # Installing
-sudo "apt-get install -y git" if config.platform == "debian"
 normaldo "bin/librarian-chef install --clean #{(options[:debug] ? '--verbose' : '--quiet')}" unless File.exists?("cookbooks")
 normaldo "bin/librarian-chef update #{(options[:debug] ? '--verbose' : '--quiet')}" if options[:update_cookbooks]
 
 # Run Chef
-sudo "bin/chef-solo --log_level #{(options[:debug] ? 'debug' : 'error')} -c solo.rb -j kitchenplan-attributes.json -o #{config.config['recipes'].join(",")}" if options[:chef]
+if options[:recipes]
+  sudo "bin/chef-solo --log_level #{(options[:debug] ? 'debug' : 'error')} -c solo.rb -j kitchenplan-attributes.json -o #{options[:recipes].join(",")}" if options[:chef]
+else
+  sudo "bin/chef-solo --log_level #{(options[:debug] ? 'debug' : 'error')} -c solo.rb -j kitchenplan-attributes.json -o #{config.config['recipes'].join(",")}" if options[:chef]
+end
 
-ohai "Chef run complete, your computer should be installed. You can always rerun kitchenplan to adjust your settings."
+ohai "Chef run complete, your computer should be installed. You can always rerun Kitchenplan to adjust your settings."

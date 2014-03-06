@@ -117,7 +117,10 @@ end
 
 ######################################################
 
-abort "OSX too old, you need at least Mountain Lion" if macos_version < "10.8"
+ohai "Kitchenplan is only tested on 10.8 and 10.9, proceed on your own risk." if macos_version < "10.8"
+wait_for_user if macos_version < "10.8"
+#abort "OSX too old, you need at least Mountain Lion" if macos_version < "10.8"
+
 abort "Don't run this as root!" if Process.uid == 0
 abort <<-EOABORT unless `groups`.split.include? "admin"
 This script requires the user #{ENV['USER']} to be an Administrator.
@@ -156,8 +159,8 @@ if File.directory?(KITCHENPLAN_PATH)
   normaldo "git pull"
 else
   ohai "Setting up the Kitchenplan installation..."
-  sudo "mkdir -p /opt"
-  sudo "chown -R #{ENV["USER"]} /opt"
+  sudo "mkdir -p #{KITCHENPLAN_PATH}"
+  sudo "chown -R #{ENV["USER"]} #{KITCHENPLAN_PATH}"
   normaldo "git clone -q #{KITCHENPLAN_REPO} #{KITCHENPLAN_PATH}"
 end
 

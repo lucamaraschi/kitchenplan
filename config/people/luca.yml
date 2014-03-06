@@ -3,17 +3,13 @@ groups:
     - smartie
 recipes:
     global:
+        - dotfiles::sshconfig
     mac_os_x:
         - applications::7zip
         - applications::cyberduck
         - applications::google-hangouts
         - applications::iterm2
         - applications::rdio
-        - applications::virtualbox
-        - applications::1password
-        - applications::dropbox
-        - applications::evernote
-        - applications::istatmenus4
         - applications::omnigraffle
         - applications::things
         - applications::vlc
@@ -23,6 +19,9 @@ recipes:
         - applications::mou
         - applications::flash
         - applications::spectacle
+        - applications::omnigraffle
+        - applications::launchrocket
+        - sudoalt::default
         - osxdefaults::dock_automatically_hide_and_show_the_dock
         - osxdefaults::dock_do_not_animate_opening_applications_from_the_dock
         - osxdefaults::dock_enable_spring_loading_for_all_dock_items
@@ -38,14 +37,15 @@ recipes:
         - osxdefaults::menu_show_clock_with_date
         - dotfiles::zsh
 attributes:
-    git:
-        name: Luca Maraschi
-        email: luca.maraschi@gmail.com
     osxdefaults:
         computername: Synapse
+        - osxdefaults::mail_when_searching_do_not_include_trash
+        - osxdefaults::mail_copy_email_addresses_instead_of_names_in_mail
+        - osxdefaults::set_computer_name
     dotfiles:
-        kdeploy:
-            hostname: dev
+        vimusers:
+            - root
+            - luca
         vim:
             bundle:
                 - sleuth: git://github.com/tpope/vim-sleuth.git
@@ -54,3 +54,26 @@ attributes:
                 - airline: https://github.com/bling/vim-airline
                 - syntastic: git://github.com/scrooloose/syntastic.git
                 - nerdtree: https://github.com/scrooloose/nerdtree.git
+    git:
+        name: Luca Maraschi
+        email: luca.maraschi@gmail.com
+    authorization:
+        sudo:
+            users:
+                - luca
+            passwordless: true
+            include_sudoers_d: true
+    homebrewalt:
+        cask_apps:
+            - onepassword
+            - dropbox
+            - evernote
+            - istat-menus
+            - alfred
+            - rdio
+            - bartender
+            - vmware-fusion
+            - virtualbox
+            - vagrant
+            - hazel
+            - sonos
