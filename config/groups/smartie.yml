@@ -3,7 +3,4 @@ recipes:
         - applications::kms
 attributes:
     postfix:
-        domain: "kunstmaan.be"
-    homebrewalt:
-        cask_apps:
-            - hipchat
+        domain: "getsporti.net"
