@@ -1,7 +1,6 @@
 recipes:
     global:
         - dotfiles::gitconfig
-        - applications::sass
         - applications::ssh_config
 #        - applications::macvim          # install xcode before trying to compile macvim
         - dotfiles::vim
