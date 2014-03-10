@@ -63,7 +63,7 @@ attributes:
             - virtualbox
             - vagrant
             - hazel
-            - sonos
+            - iterm2
     nodejs:
         apps:
             - pageres
