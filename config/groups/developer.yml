@@ -5,7 +5,6 @@ recipes:
 #        - applications::macvim          # install xcode before trying to compile macvim
         - dotfiles::vim
         - applications::composer
-        - applications::mongo
         - dotfiles::workspace
     mac_os_x:
         - applications::svgo
