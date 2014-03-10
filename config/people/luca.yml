@@ -8,6 +8,7 @@ recipes:
     mac_os_x:
         - applications::omnigraffle
         - applications::launchrocket
+        - applications::iterm2
         - sudoalt::default
         - osxdefaults::dock_automatically_hide_and_show_the_dock
         - osxdefaults::dock_do_not_animate_opening_applications_from_the_dock
@@ -63,7 +64,6 @@ attributes:
             - virtualbox
             - vagrant
             - hazel
-            - iterm2
     nodejs:
         apps:
             - pageres
